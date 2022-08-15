@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import RoutesApp from "./routes";
 
-export default function Example() {
+function App() {
 	return (
 		<>
 			<RoutesApp />
 		</>
 	);
 }
+
+export default App;
