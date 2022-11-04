@@ -37,6 +37,7 @@ export default function Login() {
 					headers: {
 						"access-control-allow-origin": "*",
 						"Content-type": "application/json; charset=UTF-8",
+						authorization: " xxxxxxxxxx",
 					},
 					withCredentials: true,
 				}
