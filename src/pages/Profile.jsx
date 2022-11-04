@@ -1,25 +1,17 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import Navbar from "../components/Common/Navbar/Navbar";
 import { ChevronLeftIcon } from "@heroicons/react/20/solid";
-import { useAuth } from "../context/AuthContext";
+import useLogout from "../hooks/useLogout";
 import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
-	const [error, setError] = useState("");
-	const { currentUser, logout } = useAuth();
+	const logout = useLogout();
 	const navigate = useNavigate();
 
-	async function handleLogout() {
-		setError("");
-
-		try {
-			await logout();
-			navigate("/login");
-		} catch {
-			setError("erro ao logar");
-		}
-	}
-
+	const signOut = async () => {
+		await logout();
+		navigate("/login");
+	};
 	return (
 		<>
 			<form className="mx-auto max-w-7xl py-4 px-4 mb-12 sm:px-6 lg:px-8">
@@ -88,7 +80,6 @@ export default function Profile() {
 										id="first-name"
 										autoComplete="given-name"
 										className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 sm:max-w-xs sm:text-s"
-										value={currentUser.email}
 									/>
 								</div>
 							</div>
@@ -123,7 +114,7 @@ export default function Profile() {
 						</button>
 					</div>
 					<div className="mt-9 flex justify-center text-orange-500">
-						<button onClick={handleLogout}>deslogar</button>
+						<button onClick={signOut}>deslogar</button>
 					</div>
 				</div>
 			</form>

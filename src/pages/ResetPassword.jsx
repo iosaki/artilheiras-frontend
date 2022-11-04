@@ -1,30 +1,12 @@
 import React, { useRef, useState } from "react";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "../components/Common/Alerts/Alert";
+import { SuccessAlert } from "../components/Common/Alerts/SuccessAlert";
 
 export default function ResetPassword() {
 	const emailRef = useRef();
-	const { resetPassword } = useAuth();
 	const [error, setError] = useState("");
 	const [message, setMessage] = useState("");
 	const [loading, setLoading] = useState(false);
-
-	async function handleSubmit(e) {
-		e.preventDefault();
-
-		try {
-			setMessage("");
-			setError("");
-			setLoading(true);
-			await resetPassword(emailRef.current.value);
-			setMessage("Check your inbox for further instructions");
-		} catch {
-			setError("Failed to reset password");
-		}
-
-		setLoading(false);
-	}
 
 	return (
 		<div className="h-screen flex flex-col  mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 justify-center ">
@@ -38,7 +20,7 @@ export default function ResetPassword() {
 
 			<div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
 				<div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-					<form className="space-y-6" onSubmit={handleSubmit}>
+					<form className="space-y-6">
 						<div>
 							<label
 								htmlFor="email"
