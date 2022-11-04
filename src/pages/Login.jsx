@@ -34,10 +34,7 @@ export default function Login() {
 				"/login",
 				JSON.stringify({ email, password }),
 				{
-					headers: {
-						"Access-Control-Allow-Origin": "*",
-						"Content-type": "application/json; charset=UTF-8",
-					},
+					headers: { "Content-Type": "application/json" },
 					withCredentials: true,
 				}
 			);
